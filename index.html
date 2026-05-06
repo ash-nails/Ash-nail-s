@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ash Nail's</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;500&display=swap');
+
+body {
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:#fff;
+}
+
+/* fondo brillo */
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle at 50% 20%, rgba(212,175,55,0.2), transparent 60%);
+  z-index:-1;
+}
+
+/* contenedor */
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:20px;
+}
+
+/* titulo */
+h1{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  text-align:center;
+  font-size:32px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#ccc;
+  margin-bottom:20px;
+}
+
+/* cards */
+.card{
+  background:#111;
+  border-radius:20px;
+  padding:15px;
+  margin-bottom:20px;
+  box-shadow:0 0 15px rgba(212,175,55,0.2);
+}
+
+/* inputs */
+select,input{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  border:none;
+  background:#222;
+  color:#fff;
+}
+
+/* botones */
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:20px;
+  margin-top:10px;
+  font-weight:bold;
+  background:linear-gradient(45deg,#d4af37,#fceabb);
+  color:#000;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* resultado */
+.result{
+  text-align:center;
+  font-size:24px;
+  margin-top:10px;
+  color:#d4af37;
+}
+
+/* brillo animado */
+.sparkle{
+  position:fixed;
+  width:4px;
+  height:4px;
+  background:#d4af37;
+  border-radius:50%;
+  animation:float 5s infinite;
+}
+
+@keyframes float{
+  50%{transform:translateY(-15px);}
+}
+
+/* footer */
+.footer{
+  text-align:center;
+  font-size:12px;
+  color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🖤 Ash Nail's ✨</h1>
+<p class="subtitle">Diseñá tu set y reservá tu turno 💅</p>
+
+<!-- CALCULADORA -->
+<div class="card">
+<h3>💅 Calculá tu precio</h3>
+
+<select id="tecnica" onchange="actualizar()">
+<option value="8000">Manicuría</option>
+<option value="10000">Semipermanente</option>
+<option value="12000">Rubber Gel</option>
+<option value="13000">Kapping</option>
+<option value="0">Soft Acrílico</option>
+</select>
+
+<div id="largoDiv">
+<select id="largo">
+<option value="15000">Largo S</option>
+<option value="18000">Largo M</option>
+<option value="22000">Largo L</option>
+<option value="25000">Largo XL</option>
+</select>
+</div>
+
+<div id="extrasDiv">
+<input type="number" id="cant" placeholder="Cantidad de uñas con diseño">
+
+<select id="extra">
+<option value="100">Espejo</option>
+<option value="500">Suéter</option>
+<option value="200">Glitter</option>
+<option value="100">Blooming</option>
+<option value="200">Ojo de gato</option>
+<option value="500">Relieve</option>
+<option value="200">Frances</option>
+<option value="300">Nail art</option>
+<option value="300">Encapsulado</option>
+<option value="100">Strass</option>
+<option value="100">Sticker</option>
+<option value="300">Baby boomer</option>
+<option value="500">Strass S</option>
+<option value="700">Strass M</option>
+<option value="900">Strass L</option>
+<option value="1200">Strass XL</option>
+</select>
+</div>
+
+<select id="extra2">
+<option value="0">Sin extras</option>
+<option value="1000">Cambio de forma</option>
+<option value="3000">Retiro propio</option>
+<option value="4500">Retiro colega</option>
+<option value="2000">Retiro semi</option>
+</select>
+
+<input type="number" id="repo" placeholder="Reposiciones (por uña)">
+
+<button onclick="calcular()">Calcular 💅</button>
+<div class="result" id="total"></div>
+</div>
+
+<!-- RESERVA -->
+<div class="card">
+<h3>📅 Reservá tu turno</h3>
+
+<p style="font-size:12px;">Seña 50% 💖 (luego se envía alias)</p>
+
+<input id="nombre" placeholder="Tu nombre">
+<input type="date" id="fecha">
+<input type="time" id="hora">
+
+<button onclick="enviar()">Reservar por WhatsApp 💬</button>
+<button onclick="window.open('https://instagram.com/lasuniasdeayee')">Ver trabajos 📸</button>
+
+<div id="msg" class="footer"></div>
+</div>
+
+<div class="footer">🖤 Diseños únicos • Turnos limitados ✨</div>
+
+</div>
+
+<script>
+let numero="5491168071677";
+let totalFinal=0;
+let detalle="";
+
+function actualizar(){
+if(tecnica.value=="8000"){
+extrasDiv.style.display="none";
+largoDiv.style.display="none";
+}else if(tecnica.value=="0"){
+largoDiv.style.display="block";
+extrasDiv.style.display="block";
+}else{
+largoDiv.style.display="none";
+extrasDiv.style.display="block";
+}
+}
+
+function calcular(){
+let t=parseInt(tecnica.value);
+let l=parseInt(largo.value);
+let e=parseInt(extra.value);
+let c=parseInt(cant.value)||0;
+let e2=parseInt(extra2.value);
+let r=parseInt(repo.value)||0;
+
+let total=(t==0?l:t)+(e*c)+e2+(r*1000);
+totalFinal=total;
+
+detalle="💅 Servicio seleccionado\n";
+detalle+="💰 Total: $"+total;
+
+totalEl=document.getElementById("total");
+totalEl.innerText="$"+total;
+
+totalEl.style.transform="scale(1.1)";
+setTimeout(()=>totalEl.style.transform="scale(1)",300);
+}
+
+function enviar(){
+if(!nombre.value||!fecha.value||totalFinal==0){
+msg.innerText="Completá los datos 💖";
+return;
+}
+
+let mensaje="Hola Aye 💅\n"+nombre.value+
+"\n📅 "+fecha.value+
+"\n⏰ "+hora.value+
+"\n\n"+detalle+
+"\n\nSeña 50% 💖";
+
+window.open("https://wa.me/"+numero+"?text="+encodeURIComponent(mensaje));
+msg.innerText="Turno enviado 💖";
+}
+
+actualizar();
+</script>
+
+</body>
+</html>

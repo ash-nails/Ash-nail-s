@@ -13,7 +13,7 @@ body{
 margin:0;
 font-family:Montserrat;
 background:#0b0b0b;
-color:white;
+color:#fff;
 }
 
 .container{
@@ -24,7 +24,7 @@ padding:20px;
 
 .logo{
 text-align:center;
-font-size:40px;
+font-size:42px;
 color:#e7d5a7;
 font-family:Cormorant Garamond;
 }
@@ -33,7 +33,7 @@ font-family:Cormorant Garamond;
 background:#131313;
 padding:16px;
 border-radius:18px;
-margin-top:15px;
+margin-top:14px;
 }
 
 .title{
@@ -60,14 +60,14 @@ transition:.2s;
 
 .option.active{
 background:#e7d5a7;
-color:black;
+color:#111;
 font-weight:bold;
 }
 
 .price{
 font-size:11px;
 opacity:.7;
-margin-top:5px;
+margin-top:4px;
 }
 
 .decor{
@@ -97,19 +97,19 @@ margin:0 8px;
 
 .total{
 text-align:center;
-font-size:32px;
+font-size:34px;
 margin-top:10px;
 color:#e7d5a7;
 }
 
 button.calc{
 width:100%;
-margin-top:12px;
 padding:14px;
 border:none;
 border-radius:999px;
 background:linear-gradient(#c8ab6e,#e7d5a7);
 font-weight:bold;
+margin-top:12px;
 cursor:pointer;
 }
 
@@ -146,50 +146,47 @@ cursor:pointer;
 
 <div class="title">DECORACIONES</div>
 
-<div class="decor">
-Glitter $200
+<div class="decor">Glitter $200
 <div class="counter">
 <button onclick="minus('glitter')">-</button>
 <span id="glitter">0</span>
 <button onclick="plus('glitter')">+</button>
-</div>
-</div>
+</div></div>
 
-<div class="decor">
-Frances $200
+<div class="decor">Frances $200
 <div class="counter">
 <button onclick="minus('frances')">-</button>
 <span id="frances">0</span>
 <button onclick="plus('frances')">+</button>
-</div>
-</div>
+</div></div>
 
-<div class="decor">
-Strass $100
+<div class="decor">Blooming $100
+<div class="counter">
+<button onclick="minus('bloom')">-</button>
+<span id="bloom">0</span>
+<button onclick="plus('bloom')">+</button>
+</div></div>
+
+<div class="decor">Ojo de gato $200
+<div class="counter">
+<button onclick="minus('gato')">-</button>
+<span id="gato">0</span>
+<button onclick="plus('gato')">+</button>
+</div></div>
+
+<div class="decor">Relieve $500
+<div class="counter">
+<button onclick="minus('relieve')">-</button>
+<span id="relieve">0</span>
+<button onclick="plus('relieve')">+</button>
+</div></div>
+
+<div class="decor">Strass $100
 <div class="counter">
 <button onclick="minus('strass')">-</button>
 <span id="strass">0</span>
 <button onclick="plus('strass')">+</button>
-</div>
-</div>
-
-<div class="decor">
-Nail Art $300
-<div class="counter">
-<button onclick="minus('art')">-</button>
-<span id="art">0</span>
-<button onclick="plus('art')">+</button>
-</div>
-</div>
-
-<div class="decor">
-Encapsulado $300
-<div class="counter">
-<button onclick="minus('encap')">-</button>
-<span id="encap">0</span>
-<button onclick="plus('encap')">+</button>
-</div>
-</div>
+</div></div>
 
 </div>
 
@@ -201,22 +198,23 @@ Encapsulado $300
 
 <script>
 
-let price=0;
+let base=0;
 
 const prices={
 glitter:200,
 frances:200,
-strass:100,
-art:300,
-encap:300
+bloom:100,
+gato:200,
+relieve:500,
+strass:100
 };
 
-function selectTech(el,name,p,show){
+function selectTech(el,name,price,show){
 
 document.querySelectorAll('.option').forEach(o=>o.classList.remove('active'));
 el.classList.add('active');
 
-price=p;
+base=price;
 
 document.getElementById('deco').style.display = show ? 'block':'none';
 }
@@ -232,7 +230,7 @@ if(el.innerText>0) el.innerText--;
 
 function calc(){
 
-let total=price;
+let total=base;
 
 for(let k in prices){
 total += document.getElementById(k).innerText * prices[k];

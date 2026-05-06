@@ -5,33 +5,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ash Nail's</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
+
+:root{
+--gold:#c8ab6e;
+--gold-soft:#e7d5a7;
+--bg:#0b0b0b;
+--card:#131313;
+--text:#f4f4f4;
+--gray:#9b9b9b;
+}
+
+*{
+box-sizing:border-box;
+}
+
 body{
 margin:0;
-font-family:Poppins, sans-serif;
-background:#0f0f0f;
-color:white;
+background:linear-gradient(to bottom,#050505,#111);
+font-family:'Montserrat',sans-serif;
+color:var(--text);
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%, rgba(200,171,110,0.12), transparent 35%),
+radial-gradient(circle at 80% 30%, rgba(200,171,110,0.08), transparent 30%),
+radial-gradient(circle at 50% 80%, rgba(200,171,110,0.07), transparent 40%);
+pointer-events:none;
+}
+
+.butterfly{
+position:fixed;
+font-size:42px;
+opacity:0.16;
+pointer-events:none;
+filter:blur(0.2px);
+animation:float 7s ease-in-out infinite;
+}
+
+.b1{
+top:90px;
+left:15px;
+}
+
+.b2{
+right:20px;
+top:380px;
+animation-delay:2s;
+}
+
+@keyframes float{
+50%{
+transform:translateY(-12px) rotate(2deg);
+}
 }
 
 .container{
-max-width:420px;
+max-width:460px;
 margin:auto;
-padding:20px;
+padding:24px 18px 60px;
+position:relative;
+z-index:2;
 }
 
-h1{
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:42px;
 text-align:center;
-color:#c6a96b;
+color:var(--gold-soft);
+margin-top:10px;
+letter-spacing:1px;
 }
 
-.section{
-margin-bottom:20px;
+.subtitle{
+text-align:center;
+color:var(--gray);
+font-size:13px;
+margin-top:-8px;
+margin-bottom:28px;
 }
 
-.title{
-color:#c6a96b;
-margin-bottom:10px;
-font-size:14px;
+.card{
+background:rgba(19,19,19,0.95);
+border:1px solid rgba(200,171,110,0.12);
+border-radius:28px;
+padding:18px;
+margin-bottom:22px;
+box-shadow:
+0 10px 30px rgba(0,0,0,0.35),
+0 0 0 1px rgba(255,255,255,0.02) inset;
+backdrop-filter:blur(8px);
+}
+
+.section-title{
+font-size:12px;
+letter-spacing:2px;
+color:var(--gold);
+margin-bottom:14px;
 }
 
 .grid{
@@ -40,85 +119,212 @@ grid-template-columns:1fr 1fr;
 gap:10px;
 }
 
-.btn{
-padding:12px;
-border-radius:12px;
-border:1px solid #333;
-background:#1a1a1a;
+.option{
+padding:14px 10px;
+background:#181818;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.04);
 text-align:center;
-cursor:pointer;
+transition:0.2s;
+font-size:13px;
 }
 
-.btn.active{
-background:#c6a96b;
-color:black;
+.option small{
+display:block;
+margin-top:4px;
+color:var(--gray);
+font-size:11px;
 }
 
-input, select{
+.option.active{
+background:linear-gradient(145deg,#c8ab6e,#e7d5a7);
+color:#111;
+font-weight:600;
+box-shadow:0 8px 20px rgba(200,171,110,0.25);
+}
+
+.option.active small{
+color:#3d3320;
+}
+
+input,select{
 width:100%;
-padding:10px;
-margin-top:5px;
-border-radius:10px;
+padding:14px;
+background:#181818;
 border:none;
-background:#1a1a1a;
+border-radius:16px;
 color:white;
-}
-
-.main{
-background:#c6a96b;
-color:black;
-border:none;
-padding:12px;
-border-radius:20px;
-width:100%;
 margin-top:10px;
+font-size:14px;
 }
 
-.result{
+.decor-list{
+max-height:340px;
+overflow:auto;
+padding-right:5px;
+}
+
+.decor-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 14px;
+margin-bottom:10px;
+background:#181818;
+border-radius:16px;
+font-size:13px;
+}
+
+.decor-item button{
+background:none;
+border:1px solid rgba(200,171,110,0.4);
+color:var(--gold-soft);
+border-radius:999px;
+width:28px;
+height:28px;
+font-size:18px;
+}
+
+.total{
 text-align:center;
-font-size:22px;
-color:#c6a96b;
-margin-top:10px;
+font-size:34px;
+font-family:'Cormorant Garamond',serif;
+color:var(--gold-soft);
+margin-top:16px;
 }
+
+.resume{
+background:#181818;
+padding:16px;
+border-radius:18px;
+margin-top:14px;
+line-height:1.7;
+font-size:13px;
+color:#ddd;
+}
+
+.main-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:999px;
+margin-top:16px;
+font-size:15px;
+font-weight:600;
+background:linear-gradient(145deg,#c8ab6e,#f2e4be);
+color:#111;
+box-shadow:0 10px 25px rgba(200,171,110,0.22);
+}
+
+.note{
+font-size:12px;
+color:#999;
+text-align:center;
+margin-top:12px;
+line-height:1.6;
+}
+
+.instagram{
+text-align:center;
+margin-top:18px;
+}
+
+.instagram a{
+color:var(--gold-soft);
+text-decoration:none;
+font-size:13px;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="butterfly b1">🦋</div>
+<div class="butterfly b2">🦋</div>
+
 <div class="container">
 
-<h1>Ash Nail's 💅</h1>
+<div class="logo">Ash Nail's</div>
+<div class="subtitle">Diseñá tu set y reservá tu turno ✨</div>
 
-<div class="section">
-<div class="title">Técnica</div>
-<div class="grid" id="tec">
-<div class="btn" onclick="selectTec(this,'manicuria',8000)">Manicuría</div>
-<div class="btn" onclick="selectTec(this,'semi',10000)">Semi</div>
-<div class="btn" onclick="selectTec(this,'rubber',12000)">Rubber</div>
-<div class="btn" onclick="selectTec(this,'capping',13000)">Capping</div>
-<div class="btn" onclick="selectTec(this,'soft',0)">Soft</div>
+<div class="card">
+<div class="section-title">TÉCNICA</div>
+
+<div class="grid" id="tecnicas">
+<div class="option" onclick="setTechnique(this,'Manicuría',8000,false)">
+Manicuría
+<small>$8000</small>
+</div>
+
+<div class="option" onclick="setTechnique(this,'Semipermanente',10000,true)">
+Semipermanente
+<small>$10000</small>
+</div>
+
+<div class="option" onclick="setTechnique(this,'Rubber Gel',12000,true)">
+Rubber Gel
+<small>$12000</small>
+</div>
+
+<div class="option" onclick="setTechnique(this,'Capping',13000,true)">
+Capping
+<small>$13000</small>
+</div>
+
+<div class="option" onclick="setTechnique(this,'Soft Acrílico',0,true)">
+Soft Acrílico
+<small>Elegir largo</small>
+</div>
+</div>
+</div>
+
+<div class="card" id="largoCard">
+<div class="section-title">LARGO</div>
+
+<div class="grid" id="largos">
+<div class="option" onclick="setLength(this,'S',15000)">S<small>$15000</small></div>
+<div class="option" onclick="setLength(this,'M',18000)">M<small>$18000</small></div>
+<div class="option" onclick="setLength(this,'L',22000)">L<small>$22000</small></div>
+<div class="option" onclick="setLength(this,'XL',25000)">XL<small>$25000</small></div>
 </div>
 </div>
 
-<div class="section" id="largoBox">
-<div class="title">Largo (Soft)</div>
-<div class="grid" id="lar">
-<div class="btn" onclick="selectLargo(this,15000)">S</div>
-<div class="btn" onclick="selectLargo(this,18000)">M</div>
-<div class="btn" onclick="selectLargo(this,22000)">L</div>
-<div class="btn" onclick="selectLargo(this,25000)">XL</div>
+<div class="card" id="decorCard">
+<div class="section-title">DECORACIONES ✨</div>
+
+<input type="number" id="cantidad" placeholder="Cantidad de uñas decoradas">
+
+<div class="decor-list">
+
+<div class="decor-item"><span>Espejo</span><span>$100</span></div>
+<div class="decor-item"><span>Suéter</span><span>$500</span></div>
+<div class="decor-item"><span>Glitter</span><span>$200</span></div>
+<div class="decor-item"><span>Blooming</span><span>$100</span></div>
+<div class="decor-item"><span>Ojo de gato</span><span>$200</span></div>
+<div class="decor-item"><span>Relieve</span><span>$500</span></div>
+<div class="decor-item"><span>Frances</span><span>$200</span></div>
+<div class="decor-item"><span>Nail art</span><span>$300</span></div>
+<div class="decor-item"><span>Encapsulado</span><span>$300</span></div>
+<div class="decor-item"><span>Strass</span><span>$100</span></div>
+<div class="decor-item"><span>Sticker</span><span>$100</span></div>
+<div class="decor-item"><span>Baby boomer</span><span>$300</span></div>
+<div class="decor-item"><span>Uña completa strass S</span><span>$500</span></div>
+<div class="decor-item"><span>Uña completa strass M</span><span>$700</span></div>
+<div class="decor-item"><span>Uña completa strass L</span><span>$900</span></div>
+<div class="decor-item"><span>Uña completa strass XL</span><span>$1200</span></div>
+<div class="decor-item"><span>Cambio de forma</span><span>$1000</span></div>
+<div class="decor-item"><span>Retiro mío</span><span>$3000</span></div>
+<div class="decor-item"><span>Retiro colega</span><span>$4500</span></div>
+<div class="decor-item"><span>Retiro semi</span><span>$2000</span></div>
+<div class="decor-item"><span>Reposición soft</span><span>$1000</span></div>
+
 </div>
-</div>
 
-<div class="section" id="extraBox">
-<div class="title">Decoraciones</div>
-
-<input id="cant" type="number" placeholder="Cantidad de uñas">
-
-<select id="extra">
-<option value="0">Sin decoración</option>
+<select id="decoracion">
+<option value="0">Elegir decoración</option>
 <option value="100">Espejo</option>
-<option value="500">Sueter</option>
+<option value="500">Suéter</option>
 <option value="200">Glitter</option>
 <option value="100">Blooming</option>
 <option value="200">Ojo de gato</option>
@@ -129,88 +335,148 @@ margin-top:10px;
 <option value="100">Strass</option>
 <option value="100">Sticker</option>
 <option value="300">Baby boomer</option>
+<option value="500">Strass S</option>
+<option value="700">Strass M</option>
+<option value="900">Strass L</option>
+<option value="1200">Strass XL</option>
 </select>
 
-</div>
-
-<select id="extra2">
+<select id="extras">
 <option value="0">Sin extras</option>
 <option value="1000">Cambio de forma</option>
-<option value="3000">Retiro propio</option>
+<option value="3000">Retiro mío</option>
 <option value="4500">Retiro colega</option>
 <option value="2000">Retiro semi</option>
 </select>
 
-<input id="repo" type="number" placeholder="Reposiciones (por uña)">
+<input type="number" id="repo" placeholder="Reposiciones (por uña)">
 
-<button class="main" onclick="calcular()">Calcular</button>
+<button class="main-btn" onclick="calcular()">Calcular presupuesto 💅</button>
 
-<div class="result" id="total"></div>
+<div class="total" id="total">$0</div>
+<div class="resume" id="resume">Tu resumen aparecerá acá ✨</div>
+</div>
 
-<div class="section">
-<div class="title">Reservar</div>
+<div class="card">
+<div class="section-title">RESERVAR TURNO</div>
 
 <input id="nombre" placeholder="Tu nombre">
-<input id="fecha" type="date">
-<input id="hora" type="time">
+<input type="date" id="fecha">
+<select id="hora">
+<option>10:00</option>
+<option>11:30</option>
+<option>13:00</option>
+<option>14:30</option>
+<option>16:00</option>
+<option>17:30</option>
+</select>
 
-<button class="main" onclick="enviar()">WhatsApp</button>
+<div class="note">
+Seña del 50% 💖<br>
+Una vez confirmado el turno se enviará alias.
+</div>
+
+<button class="main-btn" onclick="enviar()">
+Agendar por WhatsApp 💬
+</button>
+
+<div class="instagram">
+<a href="https://instagram.com/lasuniasdeayee" target="_blank">
+Ver trabajos en Instagram ✨
+</a>
+</div>
+
 </div>
 
 </div>
 
 <script>
-let tecnica=0;
-let largo=0;
 
-function selectTec(el,nombre,precio){
-document.querySelectorAll("#tec .btn").forEach(b=>b.classList.remove("active"));
-el.classList.add("active");
-tecnica=precio;
+let tecnica='';
+let tecnicaPrecio=0;
+let largo='';
+let largoPrecio=0;
 
-if(nombre==="manicuria"){
-extraBox.style.display="none";
-largoBox.style.display="none";
-}else if(nombre==="soft"){
-largoBox.style.display="block";
-extraBox.style.display="block";
+function setTechnique(el,name,price,extras){
+
+document.querySelectorAll('#tecnicas .option').forEach(o=>o.classList.remove('active'));
+el.classList.add('active');
+
+tecnica=name;
+tecnicaPrecio=price;
+
+if(name==='Soft Acrílico'){
+largoCard.style.display='block';
 }else{
-largoBox.style.display="none";
-extraBox.style.display="block";
+largoCard.style.display='none';
+}
+
+if(extras){
+decorCard.style.display='block';
+}else{
+decorCard.style.display='none';
 }
 }
 
-function selectLargo(el,precio){
-document.querySelectorAll("#lar .btn").forEach(b=>b.classList.remove("active"));
-el.classList.add("active");
-largo=precio;
+function setLength(el,name,price){
+document.querySelectorAll('#largos .option').forEach(o=>o.classList.remove('active'));
+el.classList.add('active');
+largo=name;
+largoPrecio=price;
 }
 
 function calcular(){
-let e=parseInt(extra.value);
-let c=parseInt(cant.value)||0;
-let e2=parseInt(extra2.value);
-let r=parseInt(repo.value)||0;
 
-let total=(tecnica===0?largo:tecnica)+(e*c)+e2+(r*1000);
+let cantidad=parseInt(document.getElementById('cantidad').value)||0;
+let deco=parseInt(document.getElementById('decoracion').value)||0;
+let extra=parseInt(document.getElementById('extras').value)||0;
+let repo=parseInt(document.getElementById('repo').value)||0;
 
-document.getElementById("total").innerText="$"+total;
-window.total=total;
-}
+let base=(tecnicaPrecio===0?largoPrecio:tecnicaPrecio);
 
-function enviar(){
-if(!nombre.value||!fecha.value||!window.total){
-alert("Completá todo");
+let total=base+(deco*cantidad)+extra+(repo*1000);
+
+if(!base){
+alert('Elegí una técnica 💅');
 return;
 }
 
-let msg="Hola Aye 💅\n"+nombre.value+
-"\n📅 "+fecha.value+
-"\n⏰ "+hora.value+
-"\n💰 Total: $"+window.total;
+document.getElementById('total').innerText='$'+total;
 
-window.open("https://wa.me/5491168071677?text="+encodeURIComponent(msg));
+let resumen='💅 '+tecnica+'\n';
+if(largo) resumen+='📏 Largo '+largo+'\n';
+if(deco>0) resumen+='✨ Decoración seleccionada\n';
+if(extra>0) resumen+='➕ Extras agregados\n';
+if(repo>0) resumen+='🛠 '+repo+' reposiciones\n';
+resumen+='\n💰 Total: $'+total;
+
+window.total=total;
+window.resumen=resumen;
+
+resume.innerText=resumen;
 }
+
+function enviar(){
+
+if(!window.total){
+alert('Calculá el presupuesto primero 💖');
+return;
+}
+
+let nombre=document.getElementById('nombre').value;
+let fecha=document.getElementById('fecha').value;
+let hora=document.getElementById('hora').value;
+
+let mensaje='Hola Aye 💅\n'+
+nombre+
+'\n📅 '+fecha+
+'\n⏰ '+hora+
+'\n\n'+window.resumen+
+'\n\nSeña 50% 💖';
+
+window.open('https://wa.me/5491168071677?text='+encodeURIComponent(mensaje));
+}
+
 </script>
 
 </body>

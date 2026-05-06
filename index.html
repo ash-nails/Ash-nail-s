@@ -9,11 +9,34 @@
 
 <style>
 
+:root{
+--gold:#c8ab6e;
+--gold2:#e7d5a7;
+}
+
 body{
 margin:0;
 font-family:Montserrat;
-background:#0b0b0b;
-color:#fff;
+background:linear-gradient(to bottom,#050505,#111);
+color:white;
+overflow-x:hidden;
+}
+
+/* 🦋 MARIPOSAS */
+.butterfly{
+position:fixed;
+font-size:60px;
+opacity:.25;
+animation:float 6s infinite ease-in-out;
+pointer-events:none;
+}
+
+.b1{top:60px;left:10px;}
+.b2{top:300px;right:10px;animation-delay:2s;}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
 }
 
 .container{
@@ -25,8 +48,14 @@ padding:20px;
 .logo{
 text-align:center;
 font-size:42px;
-color:#e7d5a7;
 font-family:Cormorant Garamond;
+color:var(--gold2);
+animation:fadeDown .6s ease;
+}
+
+@keyframes fadeDown{
+from{opacity:0;transform:translateY(-10px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 .card{
@@ -34,10 +63,16 @@ background:#131313;
 padding:16px;
 border-radius:18px;
 margin-top:14px;
+animation:fadeUp .4s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 .title{
-color:#c8ab6e;
+color:var(--gold);
 font-size:12px;
 letter-spacing:2px;
 margin-bottom:10px;
@@ -55,11 +90,15 @@ padding:14px;
 border-radius:14px;
 text-align:center;
 cursor:pointer;
-transition:.2s;
+transition:.25s;
+}
+
+.option:hover{
+transform:scale(1.03);
 }
 
 .option.active{
-background:#e7d5a7;
+background:linear-gradient(145deg,var(--gold),var(--gold2));
 color:#111;
 font-weight:bold;
 }
@@ -70,6 +109,7 @@ opacity:.7;
 margin-top:4px;
 }
 
+/* DECOR */
 .decor{
 display:flex;
 justify-content:space-between;
@@ -84,9 +124,9 @@ margin-bottom:8px;
 width:28px;
 height:28px;
 border-radius:50%;
-border:1px solid #c8ab6e;
+border:1px solid var(--gold);
 background:transparent;
-color:#e7d5a7;
+color:var(--gold2);
 font-size:16px;
 cursor:pointer;
 }
@@ -95,28 +135,41 @@ cursor:pointer;
 margin:0 8px;
 }
 
-.total{
-text-align:center;
-font-size:34px;
-margin-top:10px;
-color:#e7d5a7;
-}
-
-button.calc{
+/* BOTON */
+.calc{
 width:100%;
 padding:14px;
 border:none;
 border-radius:999px;
-background:linear-gradient(#c8ab6e,#e7d5a7);
+background:linear-gradient(var(--gold),var(--gold2));
 font-weight:bold;
 margin-top:12px;
 cursor:pointer;
+transition:.2s;
 }
+
+.calc:active{
+transform:scale(.97);
+}
+
+/* TOTAL */
+.total{
+text-align:center;
+font-size:34px;
+margin-top:10px;
+color:var(--gold2);
+}
+
+/* LARGOS */
+.hidden{display:none;}
 
 </style>
 </head>
 
 <body>
+
+<div class="butterfly b1">🦋</div>
+<div class="butterfly b2">🦋</div>
 
 <div class="container">
 
@@ -141,52 +194,37 @@ cursor:pointer;
 </div>
 </div>
 
-<!-- DECORACIONES -->
-<div class="card" id="deco" style="display:none">
+<!-- LARGOS SOLO SOFT -->
+<div class="card hidden" id="lengthCard">
+
+<div class="title">LARGO</div>
+
+<div class="grid">
+
+<div class="option" onclick="setLength(this,'S',15000)">S<div class="price">$15000</div></div>
+<div class="option" onclick="setLength(this,'M',18000)">M<div class="price">$18000</div></div>
+<div class="option" onclick="setLength(this,'L',22000)">L<div class="price">$22000</div></div>
+<div class="option" onclick="setLength(this,'XL',25000)">XL<div class="price">$25000</div></div>
+
+</div>
+</div>
+
+<!-- DECOR -->
+<div class="card hidden" id="deco">
 
 <div class="title">DECORACIONES</div>
 
 <div class="decor">Glitter $200
-<div class="counter">
-<button onclick="minus('glitter')">-</button>
-<span id="glitter">0</span>
-<button onclick="plus('glitter')">+</button>
-</div></div>
+<div class="counter"><button onclick="minus('glitter')">-</button><span id="glitter">0</span><button onclick="plus('glitter')">+</button></div>
+</div>
 
 <div class="decor">Frances $200
-<div class="counter">
-<button onclick="minus('frances')">-</button>
-<span id="frances">0</span>
-<button onclick="plus('frances')">+</button>
-</div></div>
-
-<div class="decor">Blooming $100
-<div class="counter">
-<button onclick="minus('bloom')">-</button>
-<span id="bloom">0</span>
-<button onclick="plus('bloom')">+</button>
-</div></div>
-
-<div class="decor">Ojo de gato $200
-<div class="counter">
-<button onclick="minus('gato')">-</button>
-<span id="gato">0</span>
-<button onclick="plus('gato')">+</button>
-</div></div>
-
-<div class="decor">Relieve $500
-<div class="counter">
-<button onclick="minus('relieve')">-</button>
-<span id="relieve">0</span>
-<button onclick="plus('relieve')">+</button>
-</div></div>
+<div class="counter"><button onclick="minus('frances')">-</button><span id="frances">0</span><button onclick="plus('frances')">+</button></div>
+</div>
 
 <div class="decor">Strass $100
-<div class="counter">
-<button onclick="minus('strass')">-</button>
-<span id="strass">0</span>
-<button onclick="plus('strass')">+</button>
-</div></div>
+<div class="counter"><button onclick="minus('strass')">-</button><span id="strass">0</span><button onclick="plus('strass')">+</button></div>
+</div>
 
 </div>
 
@@ -199,13 +237,11 @@ cursor:pointer;
 <script>
 
 let base=0;
+let lengthPrice=0;
 
 const prices={
 glitter:200,
 frances:200,
-bloom:100,
-gato:200,
-relieve:500,
 strass:100
 };
 
@@ -216,7 +252,16 @@ el.classList.add('active');
 
 base=price;
 
-document.getElementById('deco').style.display = show ? 'block':'none';
+document.getElementById('deco').classList.toggle('hidden',!show);
+document.getElementById('lengthCard').classList.toggle('hidden',name!=='Soft Acrílico');
+}
+
+function setLength(el,name,price){
+
+document.querySelectorAll('#lengthCard .option').forEach(o=>o.classList.remove('active'));
+el.classList.add('active');
+
+lengthPrice=price;
 }
 
 function plus(id){
@@ -231,6 +276,8 @@ if(el.innerText>0) el.innerText--;
 function calc(){
 
 let total=base;
+
+if(lengthPrice) total=lengthPrice;
 
 for(let k in prices){
 total += document.getElementById(k).innerText * prices[k];

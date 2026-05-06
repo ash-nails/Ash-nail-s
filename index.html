@@ -45,27 +45,34 @@ pointer-events:none;
 
 .butterfly{
 position:fixed;
-font-size:42px;
-opacity:0.16;
+font-size:70px;
+opacity:0.22;
 pointer-events:none;
-filter:blur(0.2px);
-animation:float 7s ease-in-out infinite;
+filter:drop-shadow(0 0 18px rgba(200,171,110,0.2));
+animation:float 5s ease-in-out infinite;
 }
 
 .b1{
-top:90px;
-left:15px;
+top:70px;
+left:10px;
 }
 
 .b2{
-right:20px;
-top:380px;
+right:10px;
+top:320px;
 animation-delay:2s;
 }
 
 @keyframes float{
+25%{
+transform:translateY(-18px) rotate(4deg);
+}
 50%{
+transform:translateY(10px) rotate(-3deg);
+}
+75%{
 transform:translateY(-12px) rotate(2deg);
+}
 }
 }
 
@@ -297,59 +304,34 @@ Soft Acrílico
 
 <div class="decor-list">
 
-<div class="decor-item"><span>Espejo</span><span>$100</span></div>
-<div class="decor-item"><span>Suéter</span><span>$500</span></div>
-<div class="decor-item"><span>Glitter</span><span>$200</span></div>
-<div class="decor-item"><span>Blooming</span><span>$100</span></div>
-<div class="decor-item"><span>Ojo de gato</span><span>$200</span></div>
-<div class="decor-item"><span>Relieve</span><span>$500</span></div>
-<div class="decor-item"><span>Frances</span><span>$200</span></div>
-<div class="decor-item"><span>Nail art</span><span>$300</span></div>
-<div class="decor-item"><span>Encapsulado</span><span>$300</span></div>
-<div class="decor-item"><span>Strass</span><span>$100</span></div>
-<div class="decor-item"><span>Sticker</span><span>$100</span></div>
-<div class="decor-item"><span>Baby boomer</span><span>$300</span></div>
-<div class="decor-item"><span>Uña completa strass S</span><span>$500</span></div>
-<div class="decor-item"><span>Uña completa strass M</span><span>$700</span></div>
-<div class="decor-item"><span>Uña completa strass L</span><span>$900</span></div>
-<div class="decor-item"><span>Uña completa strass XL</span><span>$1200</span></div>
-<div class="decor-item"><span>Cambio de forma</span><span>$1000</span></div>
-<div class="decor-item"><span>Retiro mío</span><span>$3000</span></div>
-<div class="decor-item"><span>Retiro colega</span><span>$4500</span></div>
-<div class="decor-item"><span>Retiro semi</span><span>$2000</span></div>
-<div class="decor-item"><span>Reposición soft</span><span>$1000</span></div>
+<div class="decor-item"><span>Espejo • $100</span><div><button onclick="menos('espejo')">-</button> <span id="espejo">0</span> <button onclick="mas('espejo')">+</button></div></div>
+<div class="decor-item"><span>Suéter • $500</span><div><button onclick="menos('sueter')">-</button> <span id="sueter">0</span> <button onclick="mas('sueter')">+</button></div></div>
+<div class="decor-item"><span>Glitter • $200</span><div><button onclick="menos('glitter')">-</button> <span id="glitter">0</span> <button onclick="mas('glitter')">+</button></div></div>
+<div class="decor-item"><span>Blooming • $100</span><div><button onclick="menos('blooming')">-</button> <span id="blooming">0</span> <button onclick="mas('blooming')">+</button></div></div>
+<div class="decor-item"><span>Ojo de gato • $200</span><div><button onclick="menos('gato')">-</button> <span id="gato">0</span> <button onclick="mas('gato')">+</button></div></div>
+<div class="decor-item"><span>Relieve • $500</span><div><button onclick="menos('relieve')">-</button> <span id="relieve">0</span> <button onclick="mas('relieve')">+</button></div></div>
+<div class="decor-item"><span>Frances • $200</span><div><button onclick="menos('frances')">-</button> <span id="frances">0</span> <button onclick="mas('frances')">+</button></div></div>
+<div class="decor-item"><span>Nail art • $300</span><div><button onclick="menos('nailart')">-</button> <span id="nailart">0</span> <button onclick="mas('nailart')">+</button></div></div>
+<div class="decor-item"><span>Encapsulado • $300</span><div><button onclick="menos('encapsulado')">-</button> <span id="encapsulado">0</span> <button onclick="mas('encapsulado')">+</button></div></div>
+<div class="decor-item"><span>Strass • $100</span><div><button onclick="menos('strass')">-</button> <span id="strass">0</span> <button onclick="mas('strass')">+</button></div></div>
+<div class="decor-item"><span>Sticker • $100</span><div><button onclick="menos('sticker')">-</button> <span id="sticker">0</span> <button onclick="mas('sticker')">+</button></div></div>
+<div class="decor-item"><span>Baby boomer • $300</span><div><button onclick="menos('boomer')">-</button> <span id="boomer">0</span> <button onclick="mas('boomer')">+</button></div></div>
+<div class="decor-item"><span>Strass S • $500</span><div><button onclick="menos('strasss')">-</button> <span id="strasss">0</span> <button onclick="mas('strasss')">+</button></div></div>
+<div class="decor-item"><span>Strass M • $700</span><div><button onclick="menos('strassm')">-</button> <span id="strassm">0</span> <button onclick="mas('strassm')">+</button></div></div>
+<div class="decor-item"><span>Strass L • $900</span><div><button onclick="menos('strassl')">-</button> <span id="strassl">0</span> <button onclick="mas('strassl')">+</button></div></div>
+<div class="decor-item"><span>Strass XL • $1200</span><div><button onclick="menos('strassxl')">-</button> <span id="strassxl">0</span> <button onclick="mas('strassxl')">+</button></div></div>
 
 </div>
 
-<select id="decoracion">
-<option value="0">Elegir decoración</option>
-<option value="100">Espejo</option>
-<option value="500">Suéter</option>
-<option value="200">Glitter</option>
-<option value="100">Blooming</option>
-<option value="200">Ojo de gato</option>
-<option value="500">Relieve</option>
-<option value="200">Frances</option>
-<option value="300">Nail art</option>
-<option value="300">Encapsulado</option>
-<option value="100">Strass</option>
-<option value="100">Sticker</option>
-<option value="300">Baby boomer</option>
-<option value="500">Strass S</option>
-<option value="700">Strass M</option>
-<option value="900">Strass L</option>
-<option value="1200">Strass XL</option>
-</select>
-
 <select id="extras">
 <option value="0">Sin extras</option>
-<option value="1000">Cambio de forma</option>
-<option value="3000">Retiro mío</option>
-<option value="4500">Retiro colega</option>
-<option value="2000">Retiro semi</option>
+<option value="1000">Cambio de forma • $1000</option>
+<option value="3000">Retiro mío • $3000</option>
+<option value="4500">Retiro colega • $4500</option>
+<option value="2000">Retiro semi • $2000</option>
 </select>
 
-<input type="number" id="repo" placeholder="Reposiciones (por uña)">
+<input type="number" id="repo" placeholder="Reposiciones soft (cantidad)">
 
 <button class="main-btn" onclick="calcular()">Calcular presupuesto 💅</button>
 
@@ -425,16 +407,56 @@ largo=name;
 largoPrecio=price;
 }
 
+let precios={
+espejo:100,
+sueter:500,
+glitter:200,
+blooming:100,
+gato:200,
+relieve:500,
+frances:200,
+nailart:300,
+encapsulado:300,
+strass:100,
+sticker:100,
+boomer:300,
+strasss:500,
+strassm:700,
+strassl:900,
+strassxl:1200
+};
+
+function mas(id){
+let el=document.getElementById(id);
+el.innerText=parseInt(el.innerText)+1;
+}
+
+function menos(id){
+let el=document.getElementById(id);
+let n=parseInt(el.innerText);
+if(n>0) el.innerText=n-1;
+}
+
 function calcular(){
 
-let cantidad=parseInt(document.getElementById('cantidad').value)||0;
-let deco=parseInt(document.getElementById('decoracion').value)||0;
 let extra=parseInt(document.getElementById('extras').value)||0;
 let repo=parseInt(document.getElementById('repo').value)||0;
 
 let base=(tecnicaPrecio===0?largoPrecio:tecnicaPrecio);
 
-let total=base+(deco*cantidad)+extra+(repo*1000);
+let decoTotal=0;
+let detalleDecos='';
+
+for(let key in precios){
+let cantidad=parseInt(document.getElementById(key).innerText)||0;
+if(cantidad>0){
+decoTotal+=cantidad*precios[key];
+detalleDecos+=key+' x'+cantidad+'
+';
+}
+}
+
+let total=base+decoTotal+extra+(repo*1000);
 
 if(!base){
 alert('Elegí una técnica 💅');
@@ -443,12 +465,19 @@ return;
 
 document.getElementById('total').innerText='$'+total;
 
-let resumen='💅 '+tecnica+'\n';
-if(largo) resumen+='📏 Largo '+largo+'\n';
-if(deco>0) resumen+='✨ Decoración seleccionada\n';
-if(extra>0) resumen+='➕ Extras agregados\n';
-if(repo>0) resumen+='🛠 '+repo+' reposiciones\n';
-resumen+='\n💰 Total: $'+total;
+let resumen='💅 '+tecnica+'
+';
+if(largo) resumen+='📏 Largo '+largo+'
+';
+if(detalleDecos) resumen+='✨ Decoraciones:
+'+detalleDecos+'
+';
+if(extra>0) resumen+='➕ Extras agregados
+';
+if(repo>0) resumen+='🛠 '+repo+' reposiciones
+';
+resumen+='
+💰 Total: $'+total;
 
 window.total=total;
 window.resumen=resumen;
